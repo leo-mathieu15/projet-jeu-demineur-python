@@ -27,3 +27,11 @@ def isContenuCorrect(nb:int) -> bool:
     elif nb < const.ID_MINE or nb > 8:
         correct = False
     return correct
+
+def construireCellule(contenu:int=0,visible:bool=False) -> dict:
+    if contenu < const.ID_MINE or contenu > 8:
+        raise ValueError(f"construireCellule : le contenu {contenu} n’est pas correct")
+    elif type(visible) != bool:
+        raise TypeError(f"construireCellule : le second paramètre ({visible}) n’est pas un booléen")
+    cellule = {const.CONTENU:contenu, const.VISIBLE:visible}
+    return cellule
