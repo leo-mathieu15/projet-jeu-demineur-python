@@ -96,3 +96,22 @@ def getContenuGrilleDemineur(grille:list,coord:tuple) -> int:
     return getContenuCellule(cellule)
 
 def setContenuGrilleDemineur(grille:list,coord:tuple,contenu:int) -> None:
+    cellule = getCelluleGrilleDemineur(grille,coord)
+    setContenuCellule(cellule,contenu)
+    return None
+
+def isVisibleGrilleDemineur(grille:list,coord:tuple) -> bool:
+    cellule = getCelluleGrilleDemineur(grille,coord)
+    return isVisibleCellule(cellule)
+
+def setVisibleGrilleDemineur(grille:list,coord:tuple,visible:bool) -> None:
+    cellule = getCelluleGrilleDemineur(grille, coord)
+    setVisibleCellule(cellule,visible)
+    return None
+
+def contientMineGrilleDemineur(grille:list,coord:tuple) -> bool:
+    cellule = getCelluleGrilleDemineur(grille,coord)
+    mine = False
+    if getContenuCellule(cellule) == const.ID_MINE:
+        mine = True
+    return mine
