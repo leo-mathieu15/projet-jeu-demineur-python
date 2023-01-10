@@ -143,6 +143,7 @@ def placerMinesGrilleDemineur(grille:list,nb:int,coord:tuple) -> None:
             lst_coordMines.append(coordMine)
             setContenuGrilleDemineur(grille,coordMine,const.ID_MINE)
             nb_minesPlaces += 1
+    compterMinesVoisinesGrilleDemineur(grille)
     return None
 
 def compterMinesVoisinesGrilleDemineur(grille:list) -> None:
