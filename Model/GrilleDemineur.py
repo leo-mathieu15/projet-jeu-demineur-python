@@ -127,3 +127,58 @@ def getCoordonneeVoisinsGrilleDemineur(grille:list,coord:tuple) -> list:
             if isCoordonneeCorrecte(grille,(i,j)) and (i,j) != coord:
                 lst_coordVoisines.append((i,j))
     return lst_coordVoisines
+
+def placerMinesGrilleDemineur(grille:list,nb:int,coord:tuple) -> None:
+    print("entree",nb)
+    if nb < 0 or nb > len(grille)*len(grille[0])-1:
+        raise ValueError("placerMinesGrilleDemineur : Nombre de bombes à placer incorrect")
+    nb_minesPlaces = 0
+    lst_coordMines = []
+    while nb_minesPlaces < nb:
+        coordMine = (randint(0,len(grille)-1),randint(0,len(grille[0])-1))
+        if coordMine not in lst_coordMines and coordMine != coord:
+            lst_coordMines.append(coordMine)
+            setContenuGrilleDemineur(grille,coordMine,const.ID_MINE)
+            nb_minesPlaces += 1
+    print(nb)
+    print("|||", nb_minesPlaces)
+
+
+
+
+    # lst_coordPossibles = []
+    # for i in range(len(grille)):
+    #     for j in range(len(grille[i])):
+    #         if (i,j) != coord:
+    #             lst_coordPossibles.append((i, j))
+    # shuffle(lst_coordPossibles)
+    # for i in range(0,nb):
+    #     setContenuGrilleDemineur(grille,lst_coordPossibles[i],const.ID_MINE)
+
+    # i = nb
+    # while i != 0:
+    #     index_li_coordCellule = randint(0,len(grille)-1)
+    #     index_co_coordCellule = randint(0,len(grille)-1)
+    #     coord_cellule = (index_li_coordCellule,index_co_coordCellule)
+    #     lst_coordMinesTmp = []
+    #
+    #     # if coord_cellule != coord:
+    #     #     cellule = getCelluleGrilleDemineur(grille,coord_cellule)
+    #     #     setContenuCellule(cellule,const.ID_MINE)
+    #     #     i -= 1
+
+    # lst_coordPossibles = []
+    # for i in range(len(grille)):
+    #     for j in range(len(grille)):
+    #         if (i, j) != coord:
+    #             lst_coordPossibles.append((i, j))
+    # print(lst_coordPossibles)
+    # for j in range(nb):
+    #     index_coordCellule = randint(0,len(lst_coordPossibles)-1)
+    #     coord_cellule = lst_coordPossibles[index_coordCellule]
+    #     cellule = getCelluleGrilleDemineur(grille,coord_cellule)
+    #     setContenuCellule(cellule,const.ID_MINE)
+    #     del(lst_coordPossibles[index_coordCellule])
+
+    return None
+
