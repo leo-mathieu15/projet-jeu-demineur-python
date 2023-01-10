@@ -80,3 +80,8 @@ def isAnnotationCorrecte(annotation:str) -> bool:
     if annotation not in lst_annotations:
         correcte = False
     return correcte
+
+def getAnnotationCellule(cellule:dict) -> str:
+    if type(cellule) != dict:
+        raise TypeError(f"getAnnotationCellule : le paramètre cellule ({type(cellule)}) n’est pas une cellule")
+    return cellule[const.ANNOTATION]
