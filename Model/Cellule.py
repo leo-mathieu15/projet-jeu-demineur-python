@@ -85,3 +85,15 @@ def getAnnotationCellule(cellule:dict) -> str:
     if type(cellule) != dict:
         raise TypeError(f"getAnnotationCellule : le paramètre cellule ({type(cellule)}) n’est pas une cellule")
     return cellule[const.ANNOTATION]
+
+def changeAnnotationCellule(cellule:dict) -> None:
+    if type(cellule) != dict:
+        raise TypeError("changeAnnotationCellule : le paramètre n’est pas une cellule.")
+    annotation = getAnnotationCellule(cellule)
+    if annotation == None:
+        cellule[const.ANNOTATION] = const.FLAG
+    elif annotation == const.FLAG:
+        cellule[const.ANNOTATION] = const.DOUTE
+    else:
+        cellule[const.ANNOTATION] = None
+    return None
