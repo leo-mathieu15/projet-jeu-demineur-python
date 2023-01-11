@@ -180,3 +180,12 @@ def getMinesRestantesGrilleDemineur(grille:list) -> int:
             if annotation == const.FLAG:
                 nb += 1
     return getNbMinesGrilleDemineur(grille) - nb
+
+def gagneGrilleDemineur(grille:list) -> bool:
+    fini = True
+    for i in range(len(grille)):
+        for j in range(len(grille[i])):
+            cellule = getCelluleGrilleDemineur(grille, (i, j))
+            if (getContenuCellule(cellule) != const.ID_MINE and isVisibleCellule(cellule) == False) or (getContenuCellule(cellule) == const.ID_MINE and isVisibleCellule(cellule) == True):
+                fini = False
+    return fini
