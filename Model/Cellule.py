@@ -84,7 +84,11 @@ def isAnnotationCorrecte(annotation:str) -> bool:
 def getAnnotationCellule(cellule:dict) -> str:
     if type(cellule) != dict:
         raise TypeError(f"getAnnotationCellule : le paramètre cellule ({type(cellule)}) n’est pas une cellule")
-    return cellule[const.ANNOTATION]
+    if len(cellule) < 3:
+        annotation = None
+    else:
+        annotation = cellule[const.ANNOTATION]
+    return annotation
 
 def changeAnnotationCellule(cellule:dict) -> None:
     if type(cellule) != dict:
