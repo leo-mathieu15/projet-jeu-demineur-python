@@ -186,7 +186,7 @@ def gagneGrilleDemineur(grille:list) -> bool:
     for i in range(len(grille)):
         for j in range(len(grille[i])):
             cellule = getCelluleGrilleDemineur(grille, (i, j))
-            if (getContenuCellule(cellule) != const.ID_MINE and isVisibleCellule(cellule) == False) or (getContenuCellule(cellule) == const.ID_MINE and isVisibleCellule(cellule) == True):
+            if (getContenuCellule(cellule) != const.ID_MINE and isVisibleCellule(cellule) == False) or (getContenuCellule(cellule) == const.ID_MINE and isVisibleCellule(cellule) == True) or (getContenuCellule(cellule) == const.ID_MINE and getAnnotationCellule(cellule) != const.FLAG):
                 fini = False
     return fini
 
