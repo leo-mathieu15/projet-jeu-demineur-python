@@ -225,3 +225,20 @@ def decouvrirGrilleDemineur(grille:list,coord:tuple) -> set:
                     lst_CellulesParcourues.append(j)
         i += 1
     return set(lst_CellulesDecouvertes)
+
+def simplifierGrilleDemineur(grille:list,coord:tuple) -> set:
+    lst_CellulesDecouvertes = [None]
+    if isVisibleGrilleDemineur(grille,coord):
+        lst_CellulesDecouvertes = []
+        voisins = getCoordonneeVoisinsGrilleDemineur(grille,coord)
+        nb_drapeaux = 0
+        for voisin in voisins:
+            if getAnnotationGrilleDemineur(grille,voisin) == const.FLAG:
+                nb_drapeaux += 1
+        if getContenuGrilleDemineur(grille,coord) == nb_drapeaux:
+            lst_CellulesDecouvertes += voisins
+            for voisin in voisins:
+                setVisibleGrilleDemineur(grille,voisin,True)
+                simplifierGrilleDemineur(grille,voisin)
+    return set(lst_CellulesDecouvertes)
+
