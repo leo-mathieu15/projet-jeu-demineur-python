@@ -164,19 +164,18 @@ def getNbMinesGrilleDemineur(grille:list) -> int:
     compteur = 0
     for i in range(len(grille)):
         for j in range(len(grille[i])):
-            if getContenuGrilleDemineur(grille, (i, j)) == const.ID_MINE:
+            if (grille[i][j])[const.CONTENU] == const.ID_MINE:
                 compteur += 1
     return compteur
 
 def getAnnotationGrilleDemineur(grille:list,coord:tuple) -> str:
-    cellule = getCelluleGrilleDemineur(grille, coord)
-    return getAnnotationCellule(cellule)
+    return getAnnotationCellule(grille[coord[0]][coord[1]])
 
 def getMinesRestantesGrilleDemineur(grille:list) -> int:
     nb = 0
     for i in range(len(grille)):
         for j in range(len(grille[i])):
-            annotation = getAnnotationGrilleDemineur(grille,(i,j))
+            annotation = (grille[i][j])[const.ANNOTATION]
             if annotation == const.FLAG:
                 nb += 1
     return getNbMinesGrilleDemineur(grille) - nb
@@ -185,11 +184,11 @@ def gagneGrilleDemineur(grille:list) -> bool:
     fini = True
     for i in range(len(grille)):
         for j in range(len(grille[i])):
-            cellule = getCelluleGrilleDemineur(grille, (i, j))
+            cellule = grille[i][j]
             contient_Mine = contientMineCellule(cellule)
-            visible = isVisibleCellule(cellule)
-            annotation = getAnnotationCellule(cellule)
-            if (not contient_Mine and not visible) or (contient_Mine and visible) or (contient_Mine and annotation != const.FLAG):
+            if not contient_Mine and not cellule[const.VISIBLE]:
+                fini = False
+            elif contient_Mine and cellule[const.VISIBLE]:
                 fini = False
     return fini
 
@@ -197,7 +196,7 @@ def perduGrilleDemineur(grille:list) -> bool:
     perdu = False
     for i in range(len(grille)):
         for j in range(len(grille[i])):
-            cellule = getCelluleGrilleDemineur(grille, (i, j))
+            cellule = grille[i][j]
             if getContenuCellule(cellule) == const.ID_MINE and isVisibleCellule(cellule) == True:
                 perdu = True
     return perdu
