@@ -1,3 +1,5 @@
 .pyc
 .tmp
 .xml
+/.idea/
+/__pycache__/
